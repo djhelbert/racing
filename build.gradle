@@ -1,19 +1,28 @@
 plugins {
+    id 'org.springframework.boot' version '2.7.8'
     id 'java'
 }
 
-group 'org.racing'
-version '1.0-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
+group = 'com.racing'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.7.8')
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
-test {
+tasks.named('test', Test) {
     useJUnitPlatform()
 }
