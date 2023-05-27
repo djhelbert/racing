@@ -1,5 +1,10 @@
 package com.racing.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+@DynamoDBTable(tableName = "Account")
 public class Account {
     private String id;
     private String first;
@@ -9,6 +14,7 @@ public class Account {
     private String phone;
     private Boolean active;
 
+    @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
     }
@@ -17,6 +23,7 @@ public class Account {
         this.id = id;
     }
 
+    @DynamoDBAttribute(attributeName = "first")
     public String getFirst() {
         return first;
     }
@@ -25,6 +32,7 @@ public class Account {
         this.first = first;
     }
 
+    @DynamoDBAttribute(attributeName = "last")
     public String getLast() {
         return last;
     }
@@ -33,6 +41,7 @@ public class Account {
         this.last = last;
     }
 
+    @DynamoDBAttribute(attributeName = "password")
     public String getPassword() {
         return password;
     }
@@ -41,6 +50,7 @@ public class Account {
         this.password = password;
     }
 
+    @DynamoDBAttribute(attributeName = "email")
     public String getEmail() {
         return email;
     }
@@ -49,6 +59,7 @@ public class Account {
         this.email = email;
     }
 
+    @DynamoDBAttribute(attributeName = "phone")
     public String getPhone() {
         return phone;
     }
@@ -57,6 +68,7 @@ public class Account {
         this.phone = phone;
     }
 
+    @DynamoDBAttribute(attributeName = "active")
     public Boolean getActive() {
         return active;
     }
