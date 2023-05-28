@@ -6,22 +6,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 @DynamoDBTable(tableName = "Account")
 public class Account {
-    private String id;
     private String first;
     private String last;
     private String password;
     private String email;
     private String phone;
     private Boolean active;
-
-    @DynamoDBHashKey(attributeName = "id")
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @DynamoDBAttribute(attributeName = "first")
     public String getFirst() {
@@ -50,7 +40,7 @@ public class Account {
         this.password = password;
     }
 
-    @DynamoDBAttribute(attributeName = "email")
+    @DynamoDBHashKey(attributeName = "email")
     public String getEmail() {
         return email;
     }

@@ -45,9 +45,7 @@ public class RaceTypeDaoDynamo implements RaceTypeDao {
             return null;
         }
 
-        final RaceType type = attributes(result.getItem());
-
-        return type;
+        return attributes(result.getItem());
     }
 
     private RaceType attributes(Map<String, AttributeValue> results) {

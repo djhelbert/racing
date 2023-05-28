@@ -12,8 +12,8 @@ public class Organizer {
     private String name;
     private String description;
     private String url;
-    private String type;
-    private List<String> state;
+    private String raceType;
+    private List<String> states;
 
     @DynamoDBHashKey(attributeName = "id")
     public Integer getId() {
@@ -51,21 +51,21 @@ public class Organizer {
         this.url = url;
     }
 
-    @DynamoDBAttribute(attributeName = "type")
-    public String getType() {
-        return type;
+    @DynamoDBAttribute(attributeName = "race_type")
+    public String getRaceType() {
+        return raceType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRaceType(String raceType) {
+        this.raceType = raceType;
     }
 
-    @DynamoDBAttribute(attributeName = "state")
-    public List<String> getState() {
-        return state;
+    @DynamoDBAttribute(attributeName = "states")
+    public List<String> getStates() {
+        return states;
     }
 
-    public void setState(List<String> state) {
-        this.state = state;
+    public void setStates(List<String> states) {
+        this.states = states;
     }
 }

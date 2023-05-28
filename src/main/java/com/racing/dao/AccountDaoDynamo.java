@@ -7,7 +7,6 @@ import com.racing.model.Account;
 import com.racing.util.Constants;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,33 +38,28 @@ public class AccountDaoDynamo implements AccountDao {
         final GetItemRequest request = (new GetItemRequest()).withTableName(DYNAMODB_TABLE_NAME).withKey(map);
         final GetItemResult result = amazonDynamoDB.getItem(request);
 
-        if(result.getItem() == null) {
-          return null;
-        }
-
-        final Account account = attributes(result.getItem());
-
-        return account;
-    }
-
-    @Override
-    public Account get(String email, String password) {
-        final Map<String, AttributeValue> map = Map.of("email", new AttributeValue(email), "password", new AttributeValue(password));
-        final GetItemRequest request = (new GetItemRequest()).withTableName(DYNAMODB_TABLE_NAME).withKey(map);
-        final GetItemResult result = amazonDynamoDB.getItem(request);
-
-        if(result.getItem() == null) {
+        if (result.getItem() == null) {
             return null;
         }
 
-        final Account account = attributes(result.getItem());
+        return attributes(result.getItem());
+    }
 
-        return account;
+    @Override
+    public Account getByEmail(String email) {
+        final Map<String, AttributeValue> map = Map.of("email", new AttributeValue(email));
+        final GetItemRequest request = (new GetItemRequest()).withTableName(DYNAMODB_TABLE_NAME).withKey(map);
+        final GetItemResult result = amazonDynamoDB.getItem(request);
+
+        if (result.getItem() == null) {
+            return null;
+        }
+
+        return attributes(result.getItem());
     }
 
     private Account attributes(Map<String, AttributeValue> results) {
         final Account account = new Account();
-        account.setId(results.get("id").getS());
         account.setFirst(results.get("first").getS());
         account.setLast(results.get("last").getS());
         account.setEmail(results.get("email").getS());
