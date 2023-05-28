@@ -5,8 +5,12 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '11'
+
+tasks.jar {
+    manifest.attributes["Main-Class"] = "com.racing.Application"
+}
 
 repositories {
     mavenCentral()
