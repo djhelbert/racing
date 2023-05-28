@@ -34,7 +34,7 @@ public class OrganizerDaoDynamo implements OrganizerDao {
 
         final ScanRequest scanRequest = new ScanRequest()
                 .withTableName(DYNAMODB_TABLE_NAME)
-                .withFilterExpression("contains(states, :val2) AND race_type = :val1")
+                .withFilterExpression("contains(states, :val2) AND raceType = :val1")
                 .withExpressionAttributeValues(expressionAttributeValues);
 
         final List<Organizer> list = new ArrayList<>();
@@ -66,7 +66,7 @@ public class OrganizerDaoDynamo implements OrganizerDao {
     private Organizer attributes(Map<String, AttributeValue> results) {
         final Organizer org = new Organizer();
         org.setId(new Integer(results.get("id").getN()));
-        org.setRaceType(results.get("race_type").getS());
+        org.setRaceType(results.get("raceType").getS());
         org.setUrl(results.get("url").getS());
         org.setDescription(results.get("description").getS());
         org.setName(results.get("name").getS());

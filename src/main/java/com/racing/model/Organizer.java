@@ -51,7 +51,7 @@ public class Organizer {
         this.url = url;
     }
 
-    @DynamoDBAttribute(attributeName = "race_type")
+    @DynamoDBAttribute(attributeName = "raceType")
     public String getRaceType() {
         return raceType;
     }
